@@ -26,7 +26,6 @@ public class test extends JFrame
     private JTextField dezhouyiqiTextField;
     private JButton button2;
     private JButton button21;
-    private JButton button22;
     private JButton button24;
     private JButton button25;
     public void init()
@@ -39,5 +38,6 @@ public class test extends JFrame
                 500,600);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        System.out.println("  ");
     }
 }
