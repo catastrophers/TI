@@ -21,6 +21,7 @@ public class TI_LCD_Programmer extends JFrame
 //                System.out.println(KeyStroke.getKeyStroke(keycode,0,false));
 //            }
 //        });
+
     }
 
     public void init()
@@ -80,6 +81,10 @@ public class TI_LCD_Programmer extends JFrame
         a8Button.addActionListener(e -> IOput_display("8"));
         a9Button.addActionListener(e -> IOput_display("9"));
         dotButton.addActionListener(e -> IOput_display("."));
+        AddButton.addActionListener(e -> {
+            if_operator=true;
+            operator1=""+tmp;
+        });
 
     }
 
@@ -155,8 +160,8 @@ public class TI_LCD_Programmer extends JFrame
     private JLabel CM;
     private int symbol=1;
     private boolean if_operator=false;   //是否是运算符
-    private String operator1;            //操作数1
-    private String operator2;            //操作数2
+    private String operator1="";            //操作数1
+    private String operator2="";            //操作数2
     private String tmp="";                  //用于在ioput中显示
 
 }
