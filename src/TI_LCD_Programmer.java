@@ -9,6 +9,34 @@ public class TI_LCD_Programmer extends JFrame
 {
     public TI_LCD_Programmer()
     {
+        keyboard_init();
+        button_init();
+//        a3Button.addKeyListener(new KeyAdapter()
+//        {
+//            @Override
+//            public void keyReleased(KeyEvent e)
+//            {
+//                super.keyReleased(e);
+//                int keycode=e.getKeyCode();
+//                System.out.println(KeyStroke.getKeyStroke(keycode,0,false));
+//            }
+//        });
+    }
+
+    public void init()
+    {
+        IOput.setBorder(BorderFactory.createEmptyBorder());
+        Base.setBorder(BorderFactory.createEmptyBorder());
+        this.setTitle("TI_LCD_Programmer");
+        this.add(TI_LCD_Programmer);
+        Toolkit kit=Toolkit.getDefaultToolkit();
+        this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void keyboard_init()
+    {
         a0Button.registerKeyboardAction(e -> a0Button.doClick(), KeyStroke.getKeyStroke("pressed 0"), JComponent.WHEN_IN_FOCUSED_WINDOW);
         a0Button.registerKeyboardAction(e -> a0Button.doClick(), KeyStroke.getKeyStroke("pressed NUMPAD0"), JComponent.WHEN_IN_FOCUSED_WINDOW);
         a1Button.registerKeyboardAction(e -> a1Button.doClick(), KeyStroke.getKeyStroke("pressed 1"), JComponent.WHEN_IN_FOCUSED_WINDOW);
@@ -36,39 +64,32 @@ public class TI_LCD_Programmer extends JFrame
         MulButton.registerKeyboardAction(e -> MulButton.doClick(), KeyStroke.getKeyStroke("pressed MULTIPLY"), JComponent.WHEN_IN_FOCUSED_WINDOW);
         DivButton.registerKeyboardAction(e -> DivButton.doClick(), KeyStroke.getKeyStroke("pressed DIVIDE"), JComponent.WHEN_IN_FOCUSED_WINDOW);
         dotButton.registerKeyboardAction(e -> dotButton.doClick(), KeyStroke.getKeyStroke("pressed DECIMAL"), JComponent.WHEN_IN_FOCUSED_WINDOW);
-
-
-        a5Button.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                System.out.println(5);
-            }
-        });
-        a3Button.addKeyListener(new KeyAdapter()
-        {
-            @Override
-            public void keyReleased(KeyEvent e)
-            {
-                super.keyReleased(e);
-                int keycode=e.getKeyCode();
-                System.out.println(KeyStroke.getKeyStroke(keycode,0,false));
-            }
-        });
+        EqualButton.registerKeyboardAction(e -> EqualButton.doClick(), KeyStroke.getKeyStroke("pressed ENTER"), JComponent.WHEN_IN_FOCUSED_WINDOW);
     }
 
-    public void init()
+    private void button_init()
     {
-        IOput.setBorder(BorderFactory.createEmptyBorder());
-        Base.setBorder(BorderFactory.createEmptyBorder());
-        this.setTitle("TI_LCD_Programmer");
-        this.add(TI_LCD_Programmer);
-        Toolkit kit=Toolkit.getDefaultToolkit();
-        this.pack();
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        a0Button.addActionListener(e -> IOput_display("0"));
+        a1Button.addActionListener(e -> IOput_display("1"));
+        a2Button.addActionListener(e -> IOput_display("2"));
+        a3Button.addActionListener(e -> IOput_display("3"));
+        a4Button.addActionListener(e -> IOput_display("4"));
+        a5Button.addActionListener(e -> IOput_display("5"));
+        a6Button.addActionListener(e -> IOput_display("6"));
+        a7Button.addActionListener(e -> IOput_display("7"));
+        a8Button.addActionListener(e -> IOput_display("8"));
+        a9Button.addActionListener(e -> IOput_display("9"));
+        dotButton.addActionListener(e -> IOput_display("."));
+
     }
+
+    private void IOput_display(String s)
+    {
+        tmp=tmp+s;
+        IOput.setText(tmp);
+    }
+
+
 
     private JPanel TI_LCD_Programmer;
     private JPanel TextPanel1;
@@ -132,5 +153,10 @@ public class TI_LCD_Programmer extends JFrame
     private JButton EqualButton;
     private JLabel TI;
     private JLabel CM;
+    private int symbol=1;
+    private boolean if_operator=false;   //是否是运算符
+    private String operator1;            //操作数1
+    private String operator2;            //操作数2
+    private String tmp="";                  //用于在ioput中显示
 
 }

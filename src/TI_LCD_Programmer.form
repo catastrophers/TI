@@ -25,6 +25,7 @@
             <properties>
               <editable value="false"/>
               <enabled value="true"/>
+              <horizontalAlignment value="4"/>
               <text value=""/>
             </properties>
           </component>
