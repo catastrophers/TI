@@ -68,6 +68,8 @@ public class TI_LCD_Programmer_test extends JFrame
 
     public void init()
     {
+        IOput.setBorder(BorderFactory.createEmptyBorder());
+        Base.setBorder(BorderFactory.createEmptyBorder());
         this.setTitle("TI_LCD_Programmer_test");
         this.add(TI_LCD_Programmer_test);
         Toolkit kit=Toolkit.getDefaultToolkit();
