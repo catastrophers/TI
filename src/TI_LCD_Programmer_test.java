@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TI_LCD_Programmer_test extends JFrame
 {
@@ -65,6 +67,11 @@ public class TI_LCD_Programmer_test extends JFrame
     private JButton EqualButton;
     private JLabel TI;
     private JLabel CM;
+
+    public TI_LCD_Programmer_test()
+    {
+
+    }
 
     public void init()
     {
