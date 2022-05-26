@@ -70,7 +70,7 @@ public class TI_LCD_Programmer_test extends JFrame
 
     public TI_LCD_Programmer_test()
     {
-        System.out.println("");
+
     }
 
     public void init()
