@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.math.BigDecimal;
 
 public class TI_LCD_Programmer extends JFrame
 {
@@ -30,7 +31,7 @@ public class TI_LCD_Programmer extends JFrame
         Base.setBorder(BorderFactory.createEmptyBorder());
         this.setTitle("TI_LCD_Programmer");
         this.add(TI_LCD_Programmer);
-        Toolkit kit=Toolkit.getDefaultToolkit();
+        Toolkit kit = Toolkit.getDefaultToolkit();
         this.pack();
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,30 +71,144 @@ public class TI_LCD_Programmer extends JFrame
 
     private void button_init()
     {
-        a0Button.addActionListener(e -> IOput_display("0"));
-        a1Button.addActionListener(e -> IOput_display("1"));
-        a2Button.addActionListener(e -> IOput_display("2"));
-        a3Button.addActionListener(e -> IOput_display("3"));
-        a4Button.addActionListener(e -> IOput_display("4"));
-        a5Button.addActionListener(e -> IOput_display("5"));
-        a6Button.addActionListener(e -> IOput_display("6"));
-        a7Button.addActionListener(e -> IOput_display("7"));
-        a8Button.addActionListener(e -> IOput_display("8"));
-        a9Button.addActionListener(e -> IOput_display("9"));
-        dotButton.addActionListener(e -> IOput_display("."));
-        AddButton.addActionListener(e -> {
-            if_operator=true;
-            operator1=""+tmp;
+        a0Button.addActionListener(e ->
+        {
+            if_operator = false;
+            IOput_display("0");
         });
+        a1Button.addActionListener(e ->
+        {
+            if_operator = false;
+            IOput_display("1");
+        });
+        a2Button.addActionListener(e ->
+        {
+            if_operator = false;
+            IOput_display("2");
+        });
+        a3Button.addActionListener(e -> {
+            if_operator = false;
+            IOput_display("3");
+        });
+        a4Button.addActionListener(e -> {
+            if_operator = false;
+            IOput_display("4");
+        });
+        a5Button.addActionListener(e -> {
+            if_operator = false;
+            IOput_display("5");
+        });
+        a6Button.addActionListener(e -> {
+            if_operator = false;
+            IOput_display("6");
+        });
+        a7Button.addActionListener(e -> {
+            if_operator = false;
+            IOput_display("7");
+        });
+        a8Button.addActionListener(e -> {
+            if_operator = false;
+            IOput_display("8");
+        });
+        a9Button.addActionListener(e -> {
+            if_operator = false;
+            IOput_display("9");
+        });
+        dotButton.addActionListener(e -> {
+            if_operator = false;
+            IOput_display(".");
+        });
+        AddButton.addActionListener(e -> {
+            if_operator = true;
+            nowoperator = 1;
+            operator2 = "" + tmp;
+            if (!operator2.isEmpty())
+                second = new BigDecimal(operator2);
+            else
+                second = new BigDecimal(0);
+            calculate();
+            IOput_display(answer.toString());
+            tmp = "";
+            first = answer;
+            lastoperator = nowoperator;
+        });
+        SubButton.addActionListener(e -> {
+            if_operator = true;
+            nowoperator = 2;
+            operator2 = IOput.getText();
+            if (!operator2.isEmpty())
+                second = new BigDecimal(operator2);
+            else
+                second = new BigDecimal(0);
+            calculate();
+            IOput_display(answer.toString());
+            tmp = "";
+            first = answer;
+            lastoperator = nowoperator;
+        });
+        MulButton.addActionListener(e -> {
+            if_operator = true;
+            nowoperator = 3;
+            operator2 = IOput.getText();
+            if (!operator2.isEmpty())
+                second = new BigDecimal(operator2);
+            else
+                second = new BigDecimal(0);
+            calculate();
+            IOput_display(answer.toString());
+            tmp = "";
+            first = answer;
+            lastoperator = nowoperator;
+        });
+        DivButton.addActionListener(e -> {
+            if_operator = true;
+            nowoperator = 4;
+            operator2 = IOput.getText();
+            if (!operator2.isEmpty())
+                second = new BigDecimal(operator2);
+            else
+                second = new BigDecimal(0);
+            calculate();
+            IOput_display(answer.toString());
+            tmp = "";
+            first = answer;
+            lastoperator = nowoperator;
+        });
+        EqualButton.addActionListener(e -> {
+            if_operator = true;
+            nowoperator = 0;
+            operator2 = IOput.getText();
+            if (!operator2.isEmpty())
+                second = new BigDecimal(operator2);
+            else
+                second = new BigDecimal(0);
+            calculate();
+            IOput_display(answer.toString());
+            tmp = "";
+            first = answer;
+            lastoperator = nowoperator;
+        });
+    }
 
+    private void calculate()
+    {
+        switch (lastoperator)
+        {
+            case 1:answer=first.add(second);break;
+            case 2:answer=first.subtract(second);break;
+            case 3:answer=first.multiply(second);break;
+            case 4:answer=first.divide(second);break;
+            case 0:answer=second;
+        }
     }
 
     private void IOput_display(String s)
     {
-        tmp=tmp+s;
+        if(if_operator==true)
+            tmp="";
+        tmp = tmp + s;
         IOput.setText(tmp);
     }
-
 
 
     private JPanel TI_LCD_Programmer;
@@ -158,10 +273,15 @@ public class TI_LCD_Programmer extends JFrame
     private JButton EqualButton;
     private JLabel TI;
     private JLabel CM;
-    private int symbol=1;
-    private boolean if_operator=false;   //是否是运算符
-    private String operator1="";            //操作数1
-    private String operator2="";            //操作数2
-    private String tmp="";                  //用于在ioput中显示
-
+    private int symbol = 1;
+    private boolean if_operator = false;   //是否是运算符
+    private String operator1 = "";            //操作数1
+    private String operator2 = "";            //操作数2
+    private String tmp = "";                  //用于在ioput中显示
+    private BigDecimal first=new BigDecimal(0);
+    private BigDecimal firstmul=new BigDecimal(1);
+    private BigDecimal second=new BigDecimal(0);
+    private BigDecimal answer=new BigDecimal(0);
+    private int lastoperator=0;               //上一运算符
+    private int nowoperator=0;                //本次运算符
 }
