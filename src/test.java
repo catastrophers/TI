@@ -29,12 +29,11 @@ public class test extends JFrame
     private JButton button22;
     private JButton button24;
     private JButton button25;
-
-
     public void init()
     {
+        System.out.println("hello world");
         this.add(panel);
-        Toolkit kit=Toolkit.getDefaultToolkit();;
+        Toolkit kit=Toolkit.getDefaultToolkit();
         this.setBounds(kit.getScreenSize().width/2-getWidth()/2-250,
                 kit.getScreenSize().height/2-getHeight()/2-300,
                 500,600);
