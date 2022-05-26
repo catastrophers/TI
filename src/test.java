@@ -30,7 +30,6 @@ public class test extends JFrame
     private JButton button25;
     public void init()
     {
-        System.out.println("hello world");
         this.add(panel);
         Toolkit kit=Toolkit.getDefaultToolkit();
         this.setBounds(kit.getScreenSize().width/2-getWidth()/2-250,

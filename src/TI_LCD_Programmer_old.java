@@ -6,7 +6,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 
-public class TI_LCD_Programmer extends JFrame implements ActionListener{
+public class TI_LCD_Programmer_old extends JFrame implements ActionListener{
     private JTextField IOput;//数据输入/输出
     private JTextField Base;//进制显示
 
